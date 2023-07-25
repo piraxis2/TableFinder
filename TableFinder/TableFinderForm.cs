@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Diagnostics;
+using System.Linq;
 
 namespace TableFinder
 {
@@ -15,10 +16,10 @@ namespace TableFinder
         private Thread _findThread = null; 
         private readonly Dictionary<string,CellFinder> _cellFinders = new Dictionary<string,CellFinder>();
         private string _folderPath = null;
+        private OleDbConnection _connection = null;
         public TableFinderForm()
         {
             InitializeComponent();
-
 
             Load += new EventHandler((sender, args) =>
             {
@@ -48,6 +49,8 @@ namespace TableFinder
 
         private void RequestFind()
         {
+            _connection?.Close();
+            _connection = null;
             _findThread?.Abort();
             _findThread = null;
             listBox.Items.Clear();
@@ -63,7 +66,8 @@ namespace TableFinder
 
         private void Find(object searchString)
         {
-
+            string[] separatingStrings = {","};
+            var searchStrings = searchString.ToString().Split(separatingStrings, StringSplitOptions.RemoveEmptyEntries);
 
             Regex fileNameExtraction = new Regex(@"[^\\]+(?=\.[^.]+($|\?))");
             // Get all Excel files in the folder
@@ -80,10 +84,10 @@ namespace TableFinder
                 if (fileName.Contains("~"))
                     continue;
 
-                using (OleDbConnection connection = new OleDbConnection(connectionString))
+                using (_connection = new OleDbConnection(connectionString)) 
                 {
-                    connection.Open();
-                    DataTable schemaTable = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    _connection.Open();
+                    DataTable schemaTable = _connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
 
                     foreach (DataRow schemaRow in schemaTable.Rows)
                     {
@@ -93,7 +97,7 @@ namespace TableFinder
 
                         Console.WriteLine($"{worksheetName}");
                         string commandText = $"SELECT * FROM [{worksheetName}]";
-                        using (OleDbCommand command = new OleDbCommand(commandText, connection))
+                        using (OleDbCommand command = new OleDbCommand(commandText, _connection))
                         {
                             using (OleDbDataReader reader = command.ExecuteReader())
                             {
@@ -103,28 +107,39 @@ namespace TableFinder
                                     for (int col = 0; col < reader.FieldCount; col++)
                                     {
                                         string cellValue = reader.GetValue(col)?.ToString();
-
-                                        if (cellValue == searchString.ToString())
+                             
+                                        if (searchStrings.Contains(cellValue)) 
                                         {
-                                            Invoke(new Action(delegate ()
-                                            {
-                                                if (!listBox.Items.Contains(worksheetName))
-                                                {
-                                                    listBox.Items.Add(worksheetName);
-                                                }
-                                            }));
                                             if (_cellFinders.TryGetValue(worksheetName, out var finder))
-                                                finder.ColumnRow.Add(new KeyValuePair<int, int>(col + 1, row + 1));
+                                            {
+                                                if (cellValue != null)
+                                                {
+                                                    if (finder.FindDataCollection.TryGetValue(cellValue, out var columnRow))
+                                                        columnRow.Add(new KeyValuePair<int, int>(col + 1, row + 1));
+                                                    else
+                                                        finder.FindDataCollection.Add(cellValue, new List<KeyValuePair<int, int>>() {new KeyValuePair<int, int>(col + 1, row + 1)});
+                                                }
+                                            }
                                             else
-                                                _cellFinders.Add(worksheetName, new CellFinder(col + 1, row + 1, worksheetName, filePath));
+                                                _cellFinders.Add(worksheetName, new CellFinder(col + 1, row + 1, worksheetName, filePath,cellValue));
                                         }
                                     }
+                                    Invoke(new Action(delegate ()
+                                    {
+                                        if (_cellFinders.TryGetValue(worksheetName, out var finder))
+                                        {
+                                            if (finder.FindDataCollection.Count == searchStrings.Length) 
+                                                if (!listBox.Items.Contains(worksheetName))
+                                                    listBox.Items.Add(worksheetName);
+                                        }
+                           
+                                    }));
                                     row++;
                                 }
                             }
                         }
                     }
-                    connection.Close();
+                    _connection.Close();
                 }
             }
         }

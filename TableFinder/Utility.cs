@@ -1,19 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 namespace TableFinder
 {
     public struct CellFinder
     {
-        public readonly List<KeyValuePair<int, int>> ColumnRow;
+        public readonly Dictionary<string, List<KeyValuePair<int, int>>> FindDataCollection;
         public readonly string WorksheetName;
         public readonly string FilePath;
 
-        public CellFinder(int column, int row, string worksheetName, string filePath)
+        public CellFinder(int column, int row, string worksheetName, string filePath, string findData)
         {
-            ColumnRow = new List<KeyValuePair<int, int>> {new KeyValuePair<int, int>(column, row)};
+            FindDataCollection = new Dictionary<string, List<KeyValuePair<int, int>>>();
+            var columnRow = new List<KeyValuePair<int, int>> {new KeyValuePair<int, int>(column, row)};
             WorksheetName = worksheetName;
             FilePath = filePath;
+            FindDataCollection.Add(findData, columnRow);
         }
+        
     }
 
     public class Utility
@@ -36,15 +40,17 @@ namespace TableFinder
             activeSheet?.Activate();
 
             List<Excel.Range> ranges = new List<Excel.Range>();
-            string cellAddress = MakeColumnKey(cellFinder.ColumnRow[0].Key) + cellFinder.ColumnRow[0].Value.ToString();
 
-            Excel.Range unionRange = activeSheet?.get_Range(cellAddress, cellAddress);
-            for (int i = 1; i < cellFinder.ColumnRow.Count; i++)
+            string firstCellAddress = MakeColumnKey(cellFinder.FindDataCollection.First().Value.First().Key) + cellFinder.FindDataCollection.First().Value.First().Value.ToString();
+            Excel.Range unionRange = activeSheet?.get_Range(firstCellAddress,firstCellAddress);
+            foreach (var elem in cellFinder.FindDataCollection)
             {
-                cellAddress = MakeColumnKey(cellFinder.ColumnRow[i].Key) + cellFinder.ColumnRow[i].Value.ToString();
-                unionRange = excelApp.Union(unionRange, activeSheet?.get_Range(cellAddress));
+                for (int i = 0; i < elem.Value.Count; i++)
+                {
+                    string cellAddress  = MakeColumnKey(elem.Value[i].Key) + elem.Value[i].Value.ToString();
+                    unionRange = excelApp.Union(unionRange, activeSheet?.get_Range(cellAddress));
+                }
             }
-
             unionRange?.Select();
             excelApp.Visible = true;
         }
