@@ -54,6 +54,7 @@ namespace TableFinder
             _findThread?.Abort();
             _findThread = null;
             listBox.Items.Clear();
+            _cellFinders.Clear();
 
             KillExcel();
 
