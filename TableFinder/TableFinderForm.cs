@@ -69,6 +69,10 @@ namespace TableFinder
         {
             string[] separatingStrings = {","};
             var searchStrings = searchString.ToString().Split(separatingStrings, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < searchStrings.Length; i++) 
+            {
+                searchStrings[i] = searchStrings[i].Trim();
+            }
 
             Regex fileNameExtraction = new Regex(@"[^\\]+(?=\.[^.]+($|\?))");
             // Get all Excel files in the folder
