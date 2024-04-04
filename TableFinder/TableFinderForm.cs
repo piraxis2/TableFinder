@@ -76,7 +76,7 @@ namespace TableFinder
 
             Regex fileNameExtraction = new Regex(@"[^\\]+(?=\.[^.]+($|\?))");
             // Get all Excel files in the folder
-            string[] filePaths = Directory.GetFiles(_folderPath, "*.xlsx");
+            string[] filePaths = Directory.GetFiles(_folderPath, "*.xlsx", SearchOption.AllDirectories);
             for (int i = 0; i < filePaths.Length; i++)
             {
                 Invoke(new Action(delegate ()
