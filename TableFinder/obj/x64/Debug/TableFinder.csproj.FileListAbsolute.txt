@@ -1,0 +1,15 @@
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\obj\x64\Debug\TableFinder.csproj.AssemblyReference.cache
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\obj\x64\Debug\TableFinder.csproj.ResolveComReference.cache
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\obj\x64\Debug\TableFinder.TableFinderForm.resources
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\obj\x64\Debug\TableFinder.Properties.Resources.resources
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\obj\x64\Debug\TableFinder.csproj.GenerateResource.cache
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\obj\x64\Debug\TableFinder.csproj.CoreCompileInputs.cache
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\bin\x64\Debug\TableFinder.exe.config
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\bin\x64\Debug\TableFinder.exe.manifest
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\bin\x64\Debug\TableFinder.application
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\bin\x64\Debug\TableFinder.exe
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\bin\x64\Debug\TableFinder.pdb
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\obj\x64\Debug\TableFinder.exe.manifest
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\obj\x64\Debug\TableFinder.application
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\obj\x64\Debug\TableFinder.exe
+D:\GD\내 드라이브\TableFinder (2)\TableFinder\obj\x64\Debug\TableFinder.pdb

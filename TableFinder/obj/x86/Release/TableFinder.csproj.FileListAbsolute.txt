@@ -1,0 +1,14 @@
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\bin\x86\Release\TableFinder.exe.config
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\bin\x86\Release\TableFinder.exe.manifest
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\bin\x86\Release\TableFinder.application
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\bin\x86\Release\TableFinder.exe
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\bin\x86\Release\TableFinder.pdb
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\obj\x86\Release\TableFinder.csproj.ResolveComReference.cache
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\obj\x86\Release\TableFinder.TableFinderForm.resources
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\obj\x86\Release\TableFinder.Properties.Resources.resources
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\obj\x86\Release\TableFinder.csproj.GenerateResource.cache
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\obj\x86\Release\TableFinder.csproj.CoreCompileInputs.cache
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\obj\x86\Release\TableFinder.exe.manifest
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\obj\x86\Release\TableFinder.application
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\obj\x86\Release\TableFinder.exe
+D:\구드\.shortcut-targets-by-id\1-XVT2SLzqzdG6--uiu8So2U19C2KSWMD\my\TableFinder (2)\TableFinder\obj\x86\Release\TableFinder.pdb
